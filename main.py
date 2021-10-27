@@ -52,6 +52,7 @@ class aplicarFuncionesTriangulo(ttk.Frame):
             # "¡Hola, {}!".format(self.name_entry.get())
         
         '''
+            # Se debe corregir el error que aparece al ejecutar la intefaz gráfica
             c1 = int(input('valor Cateto Adyacente: '))
             c2 = int(input('valor Cateto Opuesto: '))
             valor = math.sqrt((c1*c1) + (c2*c2))
