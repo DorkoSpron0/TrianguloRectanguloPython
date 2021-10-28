@@ -2,6 +2,95 @@ import tkinter as tk
 from tkinter import ttk
 import math
 # from PIL import ImageTk, Image
+class Razones2(ttk.Frame):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.label23 = ttk.Label(self)
+        self.label24 = ttk.Label(self)
+        self.label25 = ttk.Label(self)
+        self.label23["text"] = ("La hipotenusa se halla con el cateto adyacente y el angulo, siguiendo la siguiente formula."
+                            "\n\n                                                                   h = C.A/cos(A)\n")
+        self.label23.pack()
+
+        #cateto adyacente
+        self.label24["text"] = ("Ingrese el valor del cateto ")
+        self.label24.pack()
+        
+        self.catetoadyacente = ttk.Entry(self)
+        self.catetoadyacente.pack()
+
+        # Angulo
+        self.label25["text"] = ("\nIngrese el valor del ángulo ")
+        self.label25.pack()
+        
+        self.angulo2 = ttk.Entry(self)
+        self.angulo2.pack()
+
+        self.greet_button = ttk.Button(
+            self, text="Calcular", command=self.calcHipotenusa2)
+        self.greet_button.pack()
+        
+        self.greet_label = ttk.Label(self)
+        self.greet_label.pack()
+        
+    def calcHipotenusa2(self):
+        cop = self.catetoadyacente.get()
+        ang = self.angulo2.get()
+        cop = float(cop)
+        ang = float(ang)
+        ang = abs(math.cos((ang*math.pi)/4))
+        hipo = cop/ang
+        self.greet_label["text"] = \
+            "El valor de la hipotenusa es {}".format(round(hipo,2))
+
+class Razones(ttk.Frame):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.label20 = ttk.Label(self)
+        self.label21 = ttk.Label(self)
+        self.label22 = ttk.Label(self)
+        self.label20["text"] = ("La hipotenusa se halla con el cateto opuesto y el angulo, siguiendo la siguiente formula."
+                            "\n\n                                                                   h = C.O/sen(A)\n")
+        self.label20.pack()
+        
+        # Cateto opuesto
+        self.label21["text"] = ("Ingrese el valor del cateto ")
+        self.label21.pack()
+        
+        self.catetoopuesto = ttk.Entry(self)
+        self.catetoopuesto.pack()
+        
+        
+        # Angulo
+        self.label22["text"] = ("\nIngrese el valor del ángulo ")
+        self.label22.pack()
+        
+        self.angulo = ttk.Entry(self)
+        self.angulo.pack()
+
+        self.greet_button = ttk.Button(
+            self, text="Calcular", command=self.calcHipotenusa)
+        self.greet_button.pack()
+        
+        self.greet_label = ttk.Label(self)
+        self.greet_label.pack()
+        
+    def calcHipotenusa(self):
+        cop = self.catetoopuesto.get()
+        ang = self.angulo.get()
+        cop = float(cop)
+        ang = float(ang)
+        ang = abs(math.sin((ang*math.pi)/4))
+        hipo = cop/ang
+        self.greet_label["text"] = \
+            "El valor de la hipotenusa es {}".format(round(hipo,2))
+
+
+
 
 class HallarHipotenusa(ttk.Frame):
     
@@ -233,7 +322,14 @@ class Explicar(ttk.Frame):
         self.label["text"] = ("Como ya se explico, las razones trigonométricas se establecen en un triangulo en el cual, existen varios lados con\n los cuales se realizan las formulas de estas razones. \n\n"
                             "- Sen(x) = cateto opuesto / hipotenusa ---> Csc(x) = hipotenusa / cateto opuesto\n\n"
                             "- Cos(x) = cateto adyacente / hipotenusa ---> Sec(x) = hipotenusa / cateto adyacente\n\n"
-                            "- Tan(x) = cateto opuesto / cateto adyacente ---> Cot(x) = cateto adyacente / cateto opuesto\n\n")
+                            "- Tan(x) = cateto opuesto / cateto adyacente ---> Cot(x) = cateto adyacente / cateto opuesto\n\n"
+                            "Explicación Ángulos: En un triangulo rectángulo existen 3 ángulos internos de los cuales \n"
+                            "uno es de 90°, para hallar uno de ellos podemos utilizar las razones trigonometricas\n"
+                            "dependiendo de los lados del triangulo que tengamos.\n\n"
+                            "- Si nos falta el cateto adyacente al ángulo que queremos encontrar\n"
+                            "utilizamos la función Seno de la siguiente manera: Sen¯¹ Sen(X) = Sen¯¹ (cateto opuesto / hipotenusa) \n"
+                            "X = Sen¯¹ (cateto opuesto / hipotenusa) \n\n"
+                            "Si nos falta algún otro lado realizamos la misma acción dependiendo de la razón trigonométrica que vamos a utilizar.")
         self.label.pack()
 
 class Conceptos(ttk.Frame):
@@ -249,7 +345,19 @@ class Conceptos(ttk.Frame):
                             "Es el otro lado de menor longitud. Se define como aquel que se encuentra al lado contrario \ndel ángulo de referencia. \n\n"
                             "Explicación razones trigonométricas: Las Razones Trigonométricas son los enlaces que se pueden establecer entre \nlos lados de un triángulo rectángulo "
                             "\n\nHay tres grandes razones trigonométricas: tangente, seno y coseno. \n"
-                            "Cada una de estas grandes razones trigonometricas tiene su razon inversa las cuales son: cotangente, cosecante y secante.")
+                            "Cada una de estas grandes razones trigonometricas tiene su razon inversa las cuales son: cotangente, cosecante y secante. \n\n"
+                            "θ: Este simbolo representa el valor del ángulo.")
+        self.label.pack()
+
+class Nosotros(ttk.Frame):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Programa desarrollado por: \n"
+                            "Juan José Jara Calle \nNicky Alexander Florez Bustamante \nDaniel Santana Meza \nSebastian Monsalve Ramos \nJimena Muñoz Gomez"
+                            "\n\nAsesor: \nDiego Ivan Cruz Ordieres \n\n INEM JOSÉ FELIX DE FÉLIX DE RESTREPO \n\n Hackaton2_2021")
         self.label.pack()
 
 class Application(ttk.Frame):
@@ -296,6 +404,21 @@ class Application(ttk.Frame):
         self.notebook.add(
         self.HallarAnguloInterno3, text="Hallar angulo interno 3", padding=10)
         
+        #Hallar Hipotenusa Con Cateto Opuesto y Ángulo
+        self.Razones = Razones(self.notebook)
+        self.notebook.add(
+        self.Razones, text="Aplicar Razones", padding=10)
+
+        #Hallar Hipotenusa Con Cateto Adyacente y Ángulo
+        self.Razones2 = Razones2(self.notebook)
+        self.notebook.add(
+        self.Razones2, text="Aplicar Razones 2", padding=10)
+
+        # Pestaña explicación
+        self.explicar_frame = Nosotros(self.notebook)
+        self.notebook.add(
+        self.explicar_frame, text="Acerca de nosotros", padding=10)
+
         self.notebook.pack(padx=50, pady=50)
         self.pack()
 
