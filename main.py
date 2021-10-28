@@ -230,10 +230,12 @@ class Explicar(ttk.Frame):
         super().__init__(*args, **kwargs)
         
         self.label = ttk.Label(self)
-        self.label["text"] = ("Bienvenido! \n\nEl siguiente programa fue desarrollado con el fin de ayudar a hallar ciertos datos de los triángulos rectángulos como \nla hipotenusa o catetos. "
-                            "\nTodo esto explicando los conceptos y las formulas aplicadas para llevar acabo cada procedimiento.")
+        self.label["text"] = ("Como ya se explico, las razones trigonométricas se establecen en un triangulo en el cual, existen varios lados con\n los cuales se realizan las formulas de estas razones. \n\n"
+                            "- Sen(x) = cateto opuesto / hipotenusa ---> Csc(x) = hipotenusa / cateto opuesto\n\n"
+                            "- Cos(x) = cateto adyacente / hipotenusa ---> Sec(x) = hipotenusa / cateto adyacente\n\n"
+                            "- Tan(x) = cateto opuesto / cateto adyacente ---> Cot(x) = cateto adyacente / cateto opuesto\n\n")
         self.label.pack()
-       
+
 class Conceptos(ttk.Frame):
     
     def __init__(self, *args, **kwargs):
@@ -244,9 +246,12 @@ class Conceptos(ttk.Frame):
                             "\nEste triángulo tiene varios elementos, a conocer como lo son.\n\nHipotenusa: Es el lado opuesto al ángulo recto en "
                             "un triángulo rectángulo, resultando ser su lado de mayor \nlongitud. \n\nCateto adyacente: "
                             "Es uno de los dos lados de menor longitud del triángulo rectángulo. Se define como el \nsegmento que es contiguo al ángulo de referencia \n\nCateto opuesto: "
-                            "Es el otro lado de menor longitud. Se define como aquel que se encuentra al lado contrario \ndel ángulo de referencia.")
+                            "Es el otro lado de menor longitud. Se define como aquel que se encuentra al lado contrario \ndel ángulo de referencia. \n\n"
+                            "Explicación razones trigonométricas: Las Razones Trigonométricas son los enlaces que se pueden establecer entre \nlos lados de un triángulo rectángulo "
+                            "\n\nHay tres grandes razones trigonométricas: tangente, seno y coseno. \n"
+                            "Cada una de estas grandes razones trigonometricas tiene su razon inversa las cuales son: cotangente, cosecante y secante.")
         self.label.pack()
-        
+
 class Application(ttk.Frame):
     
     def __init__(self, main_window):
@@ -256,15 +261,15 @@ class Application(ttk.Frame):
         
         self.notebook = ttk.Notebook(self)
         
-        # Pestaña explicación
-        self.explicar_frame = Explicar(self.notebook)
-        self.notebook.add(
-            self.explicar_frame, text="Explicación", padding=10)
-        
         #Conceptos
         self.conceptos = Conceptos(self.notebook)
         self.notebook.add(
             self.conceptos, text="Conceptos", padding=10)
+        
+        # Pestaña explicación
+        self.explicar_frame = Explicar(self.notebook)
+        self.notebook.add(
+            self.explicar_frame, text="Explicación", padding=10)
         
         #Hallar Hipotenusa
         self.HallarHipotenusa = HallarHipotenusa(self.notebook)
