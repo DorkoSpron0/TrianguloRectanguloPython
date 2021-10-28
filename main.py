@@ -1,4 +1,3 @@
-
 import tkinter as tk
 from tkinter import ttk
 import math
@@ -12,14 +11,13 @@ class aplicarFuncionesTriangulo(ttk.Frame):
         self.label = ttk.Label(self)
         self.label2 = ttk.Label(self)
         self.label3 = ttk.Label(self)
-        self.label["text"] = ("Aplicación para calcular elementos en un triángulo rectángulo "
-                              "\nSeleccione la opción según sus datos disponibles\n")
+        self.label["text"] = ("La hipotenusa se halla con los dos catetos del triangulo, siguiendo la siguiente formula."
+                            "\n\n                                                                   h² = C₁² + C₂²\n")
         self.label.pack()
         
         
         #op=[('python',0),('C++',1),('C',2),('Java',3)]
 
-       
         # Cateto opuesto
         self.label2["text"] = ("Ingrese el valor del cateto opuesto ")
         self.label2.pack()
@@ -127,11 +125,9 @@ class Explicar(ttk.Frame):
         super().__init__(*args, **kwargs)
         
         self.label = ttk.Label(self)
-        self.label["text"] = ("Triángulo rectángulo:\n\nEl triángulo rectángulo es aquel que tiene un ángulo interior que es recto, es decir, mide 90º."
-                              "\nEste triángulo tiene varios elementos, a saber:\nHipotenusa: Es el lado mayor del triángulo, tiene al frente el ángulo"
-                              " de 90° que caracteriza a este tipo de triángulo")
+        self.label["text"] = ("Bienvenido! \n\nEl siguiente programa fue desarrollado con el fin de ayudar a hallar ciertos datos de los triángulos rectángulos como \nla hipotenusa o catetos. "
+                            "\nTodo esto explicando los conceptos y las formulas aplicadas para llevar acabo cada procedimiento.")
         self.label.pack()
-        path = 'd:/img/trect.jpeg'
         '''
         img = ImageTk.PhotoImage(Image.open(path))
         panel = self.Label(root, image = img)
@@ -147,6 +143,19 @@ class Explicar(ttk.Frame):
         self.forum_button.pack()
         '''
 
+class Conceptos(ttk.Frame):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Triángulo rectángulo: El triángulo rectángulo es aquel que tiene un ángulo interior que es recto, es decir, mide 90º."
+                            "\nEste triángulo tiene varios elementos, a conocer como lo son.\n\nHipotenusa: Es el lado opuesto al ángulo recto en "
+                            "un triángulo rectángulo, resultando ser su lado de mayor \nlongitud. \n\nCateto adyacente: "
+                            "Es uno de los dos lados de menor longitud del triángulo rectángulo. Se define como el \nsegmento que es contiguo al ángulo de referencia \n\nCateto opuesto: "
+                            "Es el otro lado de menor longitud. Se define como aquel que se encuentra al lado contrario \ndel ángulo de referencia.")
+        self.label.pack()
+        
 class Application(ttk.Frame):
     
     def __init__(self, main_window):
@@ -160,11 +169,16 @@ class Application(ttk.Frame):
         self.explicar_frame = Explicar(self.notebook)
         self.notebook.add(
             self.explicar_frame, text="Explicación", padding=10)
-
-        # Pestaña aplicación
+        
+        #Conceptos
+        self.conceptos = Conceptos(self.notebook)
+        self.notebook.add(
+            self.conceptos, text="Conceptos", padding=10)
+        
+        #Hallar Hipotenusa
         self.aplicarFuncionesTriangulo = aplicarFuncionesTriangulo(self.notebook)
         self.notebook.add(
-            self.aplicarFuncionesTriangulo, text="Triángulo rectángulo", padding=10)
+            self.aplicarFuncionesTriangulo, text="Hallar la hipotenusa", padding=10)
         
         
         self.notebook.pack(padx=50, pady=50)
