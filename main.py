@@ -3,7 +3,7 @@ from tkinter import ttk
 import math
 # from PIL import ImageTk, Image
 
-class aplicarFuncionesTriangulo(ttk.Frame):
+class HallarHipotenusa(ttk.Frame):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -15,31 +15,28 @@ class aplicarFuncionesTriangulo(ttk.Frame):
                             "\n\n                                                                   h² = C₁² + C₂²\n")
         self.label.pack()
         
-        
-        #op=[('python',0),('C++',1),('C',2),('Java',3)]
-
         # Cateto opuesto
-        self.label2["text"] = ("Ingrese el valor del cateto opuesto ")
+        self.label2["text"] = ("Ingrese el valor del primer cateto ")
         self.label2.pack()
 
         self.catetoOpuesto = ttk.Entry(self)
         self.catetoOpuesto.pack()
 
         # Cateto adyacente
-        self.label3["text"] = ("\nIngrese el valor del cateto adyacente ")
+        self.label3["text"] = ("\nIngrese el valor del segundo cateto ")
         self.label3.pack()
         
         self.catetoAdyacente = ttk.Entry(self)
         self.catetoAdyacente.pack()
 
         self.greet_button = ttk.Button(
-            self, text="Calcular", command=self.say_hello)
+            self, text="Calcular", command=self.calcularHipotenusa)
         self.greet_button.pack()
         
         self.greet_label = ttk.Label(self)
         self.greet_label.pack()
     
-    def say_hello(self):
+    def calcularHipotenusa(self):
         cOp = self.catetoOpuesto.get()
         cAd = self.catetoAdyacente.get()
         cOp = float(cOp)
@@ -76,13 +73,13 @@ class HallarCateto(ttk.Frame):
         self.cateto.pack()
 
         self.greet_button = ttk.Button(
-            self, text="Calcular", command=self.say_hello1)
+            self, text="Calcular", command=self.calcularCateto1)
         self.greet_button.pack()
         
         self.greet_label = ttk.Label(self)
         self.greet_label.pack()
     
-    def say_hello1(self):
+    def calcularCateto1(self):
         hPt = self.hipotenusa.get()
         cAd = self.cateto.get()
         hPt = float(hPt)
@@ -100,21 +97,7 @@ class Explicar(ttk.Frame):
         self.label["text"] = ("Bienvenido! \n\nEl siguiente programa fue desarrollado con el fin de ayudar a hallar ciertos datos de los triángulos rectángulos como \nla hipotenusa o catetos. "
                             "\nTodo esto explicando los conceptos y las formulas aplicadas para llevar acabo cada procedimiento.")
         self.label.pack()
-        '''
-        img = ImageTk.PhotoImage(Image.open(path))
-        panel = self.Label(root, image = img)
-        panel.pack(side = "bottom", fill = "both", expand = "yes")
-        '''       
-
-
-        '''
-        self.web_button = ttk.Button(self, text="Visitar web")
-        self.web_button.pack(pady=10)
-        
-        self.forum_button = ttk.Button(self, text="Visitar foro")
-        self.forum_button.pack()
-        '''
-
+       
 class Conceptos(ttk.Frame):
     
     def __init__(self, *args, **kwargs):
@@ -148,9 +131,9 @@ class Application(ttk.Frame):
             self.conceptos, text="Conceptos", padding=10)
         
         #Hallar Hipotenusa
-        self.aplicarFuncionesTriangulo = aplicarFuncionesTriangulo(self.notebook)
+        self.HallarHipotenusa = HallarHipotenusa(self.notebook)
         self.notebook.add(
-            self.aplicarFuncionesTriangulo, text="Hallar la hipotenusa", padding=10)
+            self.HallarHipotenusa, text="Hallar la hipotenusa", padding=10)
         
         #Hallar Cateto
         self.HallarCateto = HallarCateto(self.notebook)
