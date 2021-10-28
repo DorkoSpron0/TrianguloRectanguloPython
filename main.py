@@ -88,6 +88,142 @@ class HallarCateto(ttk.Frame):
         self.greet_label["text"] = \
             "El valor del cateto es {}".format(round(cat,2))
 
+class HallarAnguloInterno1(ttk.Frame):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Definir etiquetas
+        self.label2 = ttk.Label(self)
+        self.label3 = ttk.Label(self)
+        self.label4 = ttk.Label(self)
+        
+        # Angulo Interno con cateto opuesto e hipotenusa
+        self.label2["text"] = ("\n\nEncontrar el valor del ángulo θ conociendo el valor del cateto opuesto y el valor de la hipotenusa."
+                            "\n\n                                              sen θ = cateto opuesto / hipotenusa"
+                            "\n                                              θ = arcsen( cateto opuesto / hipotenusa )\n\n")
+        self.label2.pack()
+        
+        # Cateto adyacente
+        self.label3["text"] = ("Ingrese el valor del cateto opuesto ")
+        self.label3.pack()
+        
+        self.cateto = ttk.Entry(self)
+        self.cateto.pack()
+
+        self.label4["text"] = ("\nIngrese el valor de la hipotenusa ")
+        self.label4.pack()
+
+        self.hipotenusa = ttk.Entry(self)
+        self.hipotenusa.pack()
+
+        self.greet_button = ttk.Button(
+            self, text="Calcular", command=self.calcularAngulo1)
+        self.greet_button.pack()
+        
+        self.greet_label = ttk.Label(self)
+        self.greet_label.pack()
+    
+    def calcularAngulo1(self):
+        cAo = self.cateto.get()
+        hPt = self.hipotenusa.get()
+        cAo = float(cAo)
+        hPt = float(hPt)
+        ang = math.asin(cAo/hPt)
+        self.greet_label["text"] = \
+            "El valor del ángulo θ es {}°".format(round(math.degrees(ang),2))
+
+class HallarAnguloInterno2(ttk.Frame):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Definir etiquetas
+        self.label2 = ttk.Label(self)
+        self.label3 = ttk.Label(self)
+        self.label4 = ttk.Label(self)
+        
+        # Angulo Interno con cateto opuesto e hipotenusa
+        self.label2["text"] = ("\n\nEncontrar el valor del ángulo θ conociendo el valor del cateto adyacente y el valor de la hipotenusa."
+                            "\n\n                                              cos θ = cateto adyacente / hipotenusa"
+                            "\n                                              θ = arccos( cateto adyacente / hipotenusa )\n\n")
+        self.label2.pack()
+        
+        # Cateto adyacente
+        self.label3["text"] = ("Ingrese el valor del cateto adyacente ")
+        self.label3.pack()
+        
+        self.cateto = ttk.Entry(self)
+        self.cateto.pack()
+
+        self.label4["text"] = ("\nIngrese el valor de la hipotenusa ")
+        self.label4.pack()
+
+        self.hipotenusa = ttk.Entry(self)
+        self.hipotenusa.pack()
+
+        self.greet_button = ttk.Button(
+            self, text="Calcular", command=self.calcularAngulo2)
+        self.greet_button.pack()
+        
+        self.greet_label = ttk.Label(self)
+        self.greet_label.pack()
+    
+    def calcularAngulo2(self):
+        cAd = self.cateto.get()
+        hPt = self.hipotenusa.get()
+        cAd = float(cAd)
+        hPt = float(hPt)
+        ang = math.acos(cAd/hPt)
+        self.greet_label["text"] = \
+            "El valor del ángulo θ es {}°".format(round(math.degrees(ang),2))
+
+class HallarAnguloInterno3(ttk.Frame):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Definir etiquetas
+        self.label2 = ttk.Label(self)
+        self.label3 = ttk.Label(self)
+        self.label4 = ttk.Label(self)
+        
+        # Angulo Interno con cateto opuesto e hipotenusa
+        self.label2["text"] = ("\n\nEncontrar el valor del ángulo θ conociendo el valor del cateto opuesto y el valor del cateto adyacente."
+                            "\n\n                                              tan θ = cateto opuesto / cateto adyacente"
+                            "\n                                              θ = arctan( cateto opuesto / cateto adyacente )\n\n")
+        self.label2.pack()
+        
+        # Cateto adyacente
+        self.label3["text"] = ("Ingrese el valor del cateto opuesto ")
+        self.label3.pack()
+        
+        self.catetoOp = ttk.Entry(self)
+        self.catetoOp.pack()
+
+        self.label4["text"] = ("\nIngrese el valor del cateto adyacente ")
+        self.label4.pack()
+
+        self.catetoAd = ttk.Entry(self)
+        self.catetoAd.pack()
+
+        self.greet_button = ttk.Button(
+            self, text="Calcular", command=self.calcularAngulo3)
+        self.greet_button.pack()
+        
+        self.greet_label = ttk.Label(self)
+        self.greet_label.pack()
+    
+    def calcularAngulo3(self):
+        cOp = self.catetoOp.get()
+        cAd = self.catetoAd.get()
+        cOp = float(cOp)
+        cAd = float(cAd)
+        ang = math.atan(cOp/cAd)
+        self.greet_label["text"] = \
+            "El valor del ángulo θ es {}°".format(round(math.degrees(ang),2))
+
+
 class Explicar(ttk.Frame):
     
     def __init__(self, *args, **kwargs):
@@ -139,6 +275,21 @@ class Application(ttk.Frame):
         self.HallarCateto = HallarCateto(self.notebook)
         self.notebook.add(
         self.HallarCateto, text="Hallar un cateto", padding=10)
+        
+        #Hallar Angulo interno 1
+        self.HallarAnguloInterno1 = HallarAnguloInterno1(self.notebook)
+        self.notebook.add(
+        self.HallarAnguloInterno1, text="Hallar angulo interno 1", padding=10)
+        
+        #Hallar Angulo interno 2
+        self.HallarAnguloInterno2 = HallarAnguloInterno2(self.notebook)
+        self.notebook.add(
+        self.HallarAnguloInterno2, text="Hallar angulo interno 2", padding=10)
+        
+        #Hallar Angulo interno 3
+        self.HallarAnguloInterno3 = HallarAnguloInterno3(self.notebook)
+        self.notebook.add(
+        self.HallarAnguloInterno3, text="Hallar angulo interno 3", padding=10)
         
         self.notebook.pack(padx=50, pady=50)
         self.pack()
