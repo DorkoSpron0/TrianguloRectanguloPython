@@ -1,6 +1,6 @@
 
 import tkinter as tk
-from tkinter import PhotoImage, ttk
+from tkinter import PhotoImage, ttk, StringVar
 import math
 from tkinter.constants import X
 # from PIL import ImageTk, Image
@@ -9,40 +9,53 @@ class aplicarFuncionesTriangulo(ttk.Frame):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        self.label = ttk.Label(self)
-        self.label2 = ttk.Label(self)
-        self.label3 = ttk.Label(self)
-        self.label["text"] = ("Aplicación para calcular elementos en un triángulo rectángulo "
-                              "\nSeleccione la opción según sus datos disponibles\n")
-        self.label.pack()
-        
-        
-        #op=[('python',0),('C++',1),('C',2),('Java',3)]
+        # Creación de las etiquetas de texto que irán en el área de la ventana
+        self.label_encabezado = ttk.Label(self)
+        self.label_catetoOpuesto = ttk.Label(self)
+        self.label_catetoAdyacente = ttk.Label(self)
+        #self.v = StringVar(ttk.Frame, "1")
+        #self.opciones1 = {"Encontrar el valor de la hipotenusa" : "1",
+        #                  "Encontrar el valor de un cateto" : "2",
+        #                  "Encontrar el valor de los ángulos internos" : "3"}
 
+        self.label_encabezado["text"] = ("Aplicación para calcular elementos en un triángulo rectángulo "
+                              "\nSeleccione la opción según sus datos disponibles\n") # Asignar el texto que contendrá la etiqueta creada
+        self.label_encabezado.pack() # Ubicar la etiqueta de texto en el sitio en el que se encuentre el cursor
+        
+        #for (texto, vlr) in self.opciones1.items():
+        #    ttk.Radiobutton(text=texto,
+        #                    padx=20,
+        #                    variable=self.v,
+        #                    value=vlr).pack(anchor=ttk.W)
+
+
+        # Se crea uno a uno los botones con las opciones
+        # opciones = {('Encontrar el valor de la hipotenusa',1),('Encontrar el valor de un cateto',2),('Encontrar el valor de los ángulos internos',3)]
+
+        self.InfoEncontrarHipotenusaConCatetos()
        
-        # Cateto opuesto
-        self.label2["text"] = ("Ingrese el valor del cateto opuesto ")
-        self.label2.pack()
+    def InfoEncontrarHipotenusaConCatetos(self):    
+        self.label_catetoOpuesto["text"] = ("Ingrese el valor del cateto opuesto ") # Asignar el texto que contendrá la etiqueta creada
+        self.label_catetoOpuesto.pack() # Ubicar la etiqueta de texto en el sitio en el que se encuentre el cursor
 
-        self.catetoOpuesto = ttk.Entry(self)
-        self.catetoOpuesto.pack()
+        self.catetoOpuesto = ttk.Entry(self) # "Entry" para crear el cuadro de texto que contendrá la información del cateto opuesto
+        self.catetoOpuesto.pack() # Ubicar el cuadro de texto en el sitio en el que se encuentre el cursor
 
         # Cateto adyacente
-        self.label3["text"] = ("\nIngrese el valor del cateto adyacente ")
-        self.label3.pack()
+        self.label_catetoAdyacente["text"] = ("\nIngrese el valor del cateto adyacente ")
+        self.label_catetoAdyacente.pack() # Ubicar la etiqueta de texto en el sitio en el que se encuentre el cursor
         
-        self.catetoAdyacente = ttk.Entry(self)
-        self.catetoAdyacente.pack()
+        self.catetoAdyacente = ttk.Entry(self) # "Entry" para crear el cuadro de texto que contendrá la información del cateto adyacente
+        self.catetoAdyacente.pack() # Ubicar el cuadro de texto en el sitio en el que se encuentre el cursor
 
-        self.greet_button = ttk.Button(
-            self, text="Calcular", command=self.say_hello)
-        self.greet_button.pack()
+        self.greet_button = ttk.Button(self, text="Calcular", command=self.EncontrarHipotenusaConCatetos) # Creación del botón "Calcular" que al pulsarlo ejecuta el método "EncontrarHipotenusaConCatetos"
+        self.greet_button.pack() # Ubicar el botón de envío en el sitio en el que se encuentre el cursor
         
         self.greet_label = ttk.Label(self)
         self.greet_label.pack()
-    
-    def say_hello(self):
+
+    def EncontrarHipotenusaConCatetos(self):
+        # Cateto opuesto
         cOp = self.catetoOpuesto.get()
         cAd = self.catetoAdyacente.get()
         cOp = float(cOp)
@@ -86,7 +99,7 @@ class aplicarFuncionesTriangulo(ttk.Frame):
                 ca = int(input("Valor cateto adyacente: "))
                 gvalor = math.atan(co/ca)
                 print('el valor del angulo es: ', math.degrees(gvalor),'°')
-            control_ciclo()
+            #control_ciclo()
             return gvalor
 
 '''
@@ -162,7 +175,6 @@ class Application(ttk.Frame):
         super().__init__(main_window)
         #main_window.title("Panel de pestañas en Tcl/Tk")
         main_window.title("El triángulo rectángulo")
-        #main_window.geometry("206x245")
         main_window.geometry("800x600")
         self.notebook = ttk.Notebook(self)
         
@@ -172,7 +184,7 @@ class Application(ttk.Frame):
 
         # Pestaña aplicación
         self.aplicarFuncionesTriangulo = aplicarFuncionesTriangulo(self.notebook)
-        self.notebook.add(self.aplicarFuncionesTriangulo, text="Triángulo rectángulo", padding=10)
+        self.notebook.add(self.aplicarFuncionesTriangulo, text="Solución de problemas", padding=10)
         
         
         self.notebook.pack(padx=50, pady=50)
