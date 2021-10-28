@@ -1,7 +1,8 @@
 
 import tkinter as tk
-from tkinter import ttk
+from tkinter import PhotoImage, ttk
 import math
+from tkinter.constants import X
 # from PIL import ImageTk, Image
 
 class aplicarFuncionesTriangulo(ttk.Frame):
@@ -127,17 +128,25 @@ class Explicar(ttk.Frame):
         super().__init__(*args, **kwargs)
         
         self.label = ttk.Label(self)
+
         self.label["text"] = ("Triángulo rectángulo:\n\nEl triángulo rectángulo es aquel que tiene un ángulo interior que es recto, es decir, mide 90º."
-                              "\nEste triángulo tiene varios elementos, a saber:\nHipotenusa: Es el lado mayor del triángulo, tiene al frente el ángulo"
+                              "\nEste triángulo tiene varios elementos, a saber:\n\nHipotenusa: Es el lado mayor del triángulo, tiene al frente el ángulo"
                               " de 90° que caracteriza a este tipo de triángulo")
         self.label.pack()
-        path = 'd:/img/trect.jpeg'
+        
+        
         '''
+        # https://programacionpython80889555.wordpress.com/2018/04/15/visualizando-imagenes-con-python-y-tkinter/
+        imagen = PhotoImage(file='trect.jpeg')
+        fondo = self.label(ttk.Frame,image=imagen).place(x=0,y=0)
+        '''
+                
+        '''
+        path = 'trect.jpeg'
         img = ImageTk.PhotoImage(Image.open(path))
         panel = self.Label(root, image = img)
         panel.pack(side = "bottom", fill = "both", expand = "yes")
-        '''       
-
+        '''
 
         '''
         self.web_button = ttk.Button(self, text="Visitar web")
@@ -153,18 +162,17 @@ class Application(ttk.Frame):
         super().__init__(main_window)
         #main_window.title("Panel de pestañas en Tcl/Tk")
         main_window.title("El triángulo rectángulo")
-        
+        #main_window.geometry("206x245")
+        main_window.geometry("800x600")
         self.notebook = ttk.Notebook(self)
         
         # Pestaña explicación
-        self.explicar_frame = Explicar(self.notebook)
-        self.notebook.add(
-            self.explicar_frame, text="Explicación", padding=10)
+        self.explicar_frame = Explicar(self.notebook, width = 400, height = 400)
+        self.notebook.add(self.explicar_frame, text="Explicación", padding=10)
 
         # Pestaña aplicación
         self.aplicarFuncionesTriangulo = aplicarFuncionesTriangulo(self.notebook)
-        self.notebook.add(
-            self.aplicarFuncionesTriangulo, text="Triángulo rectángulo", padding=10)
+        self.notebook.add(self.aplicarFuncionesTriangulo, text="Triángulo rectángulo", padding=10)
         
         
         self.notebook.pack(padx=50, pady=50)
